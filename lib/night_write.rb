@@ -1,26 +1,42 @@
 require_relative 'english_to_braille'
+
 require 'pry'
+
 class NightWriter
 
-  attr_reader :input_file, :output_file
+  attr_reader :input_file, :output_file, :text
 
   def initialize
-
+    # @code_to_braille = code_to_braille
+    @open_text =  File.open(ARGV[0], "r")
+    @text = @open_text.read.chomp
+    # @line_limit = line_limit
   end
 
-  input_file = ARGV[0]
-  output_file = ARGV[1]
 
 #converting english input text to braille
   def code_to_braille
+    # binding.pry
     content = EnglishToBraille.new
-    braille = content.translate(input)
+    braille = content.translate(@text)
+    file_name = ARGV[1]
+    temp = File.open(file_name, "w")
+    temp.write(braille)
+    temp.close
+
   end
 
-#taking braille content to output file
-  # def braille_to_file
-  #   content
+
+  # def line_limit
+  #   if ARGV[0].length > 41
+  #     "\n"
+  #   end
+  #
   # end
 
-binding.pry
+
 end
+
+
+@test_file = NightWriter.new
+@test_file.code_to_braille

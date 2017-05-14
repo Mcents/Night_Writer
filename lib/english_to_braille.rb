@@ -1,7 +1,8 @@
 require './lib/alphabet'
-# require 'pry'
+require 'pry'
 
 class EnglishToBraille
+
   attr_accessor :letters,
                 :translate
 
@@ -10,7 +11,7 @@ class EnglishToBraille
   end
 
   def translate(input)
-    split_word = input.join.chars
+    split_word = input.split("")
     translate_each_letter = split_word.map do |letter|
       letters.hash[letter]
     end
