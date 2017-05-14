@@ -1,34 +1,26 @@
-class FileReader
-  def read_and_write_contents
-
-    content = File.read(ARGV[0])
-    File.write(ARGV[1], content * 3)
-
-
-    puts "#{ARGV[0]} #{ARGV[1]} containing #{ARGV[0].length} characters"
-  end
-end
-
-
+require_relative 'english_to_braille'
+require 'pry'
 class NightWriter
-  attr_reader :file_reader
+
+  attr_reader :input_file, :output_file
 
   def initialize
-    @reader = FileReader.new
+
   end
-#
-  def encode_file_to_braille
-    encode = {a => 1}
-    plain = reader.read
-    braille = encode_to_braille(plain)
+
+  input_file = ARGV[0]
+  output_file = ARGV[1]
+
+#converting english input text to braille
+  def code_to_braille
+    content = EnglishToBraille.new
+    braille = content.translate(input)
   end
-#
-#   def encode_to_braille(input)
-#     # you've taken in an INPUT string
-#     # do the magic
-#     # send out an OUTPUT string
-#   end
- end
-#
- #puts ARGV.inspect
-FileReader.new.read_and_write_contents
+
+#taking braille content to output file
+  # def braille_to_file
+  #   content
+  # end
+
+binding.pry
+end

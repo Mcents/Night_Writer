@@ -1,1 +1,1 @@
-aaaaaaaa
+"Hello to braille reader"
