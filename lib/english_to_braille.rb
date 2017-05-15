@@ -16,7 +16,9 @@ class EnglishToBraille
       letters.hash[letter]
     end
     t = translate_each_letter.transpose
+    
     "#{t[0].join}\n" + "#{t[1].join}\n" + "#{t[2].join}"
+
   end
-# binding.pry
+
 end

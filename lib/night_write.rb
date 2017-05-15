@@ -4,39 +4,34 @@ require 'pry'
 
 class NightWriter
 
-  attr_reader :input_file, :output_file, :text
+  attr_reader :input_file,
+              :output_file,
+              :text
+
 
   def initialize
     # @code_to_braille = code_to_braille
     @open_text =  File.open(ARGV[0], "r")
     @text = @open_text.read.chomp
-    # @line_limit = line_limit
-  end
+    # @new_text = new_text
 
+  end
 
 #converting english input text to braille
   def code_to_braille
-    # binding.pry
     content = EnglishToBraille.new
-    braille = content.translate(@text)
+    braille = content.translate(text)
+    line_limit = braille.scan(/.{1,82}/).join("!")
     file_name = ARGV[1]
-    temp = File.open(file_name, "w")
-    temp.write(braille)
-    temp.close
+    braille_write = File.open(file_name, "w")
+    braille_write.write(line_limit)
+    braille_write.close
 
   end
 
 
-  # def line_limit
-  #   if ARGV[0].length > 41
-  #     "\n"
-  #   end
-  #
-  # end
-
 
 end
-
 
 @test_file = NightWriter.new
 @test_file.code_to_braille
