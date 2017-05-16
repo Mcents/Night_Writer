@@ -29,19 +29,4 @@ class TestNightWrite < Minitest::Test
       end
     end
 
-
-
-  end
-
-    # expected = 82
-    # result = new_str.length
-    #
-    # assert_equal expected, result
-
-
-
-
-
-
-
 end
