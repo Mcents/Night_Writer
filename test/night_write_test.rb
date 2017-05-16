@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/night_write'
 
-# require "pry"
+require "pry"
 
 
 class TestNightWrite < Minitest::Test
@@ -23,9 +23,25 @@ class TestNightWrite < Minitest::Test
 
   def test_that_lines_break_after_82_chars
     a = NightWriter.new
-    expected = "..0..0...00.0.0.0.
-    ..000...0000.000.0
-    .0......0.....0..."
+    b = File.open(ARGV[1], "r") do |n|
+      n.each_line do |line|
+        assert line.chomp.length <= 82
+      end
+    end
+
+
+
   end
+
+    # expected = 82
+    # result = new_str.length
+    #
+    # assert_equal expected, result
+
+
+
+
+
+
 
 end

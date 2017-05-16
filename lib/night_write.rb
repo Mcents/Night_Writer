@@ -6,13 +6,15 @@ class NightWriter
 
   attr_reader :input_file,
               :output_file,
-              :text
+              :text,
+              :line_limit
 
 
   def initialize
     # @code_to_braille = code_to_braille
     @open_text =  File.open(ARGV[0], "r")
     @text = @open_text.read.chomp
+    @line_limit = line_limit
     # @new_text = new_text
 
   end
@@ -21,14 +23,21 @@ class NightWriter
   def code_to_braille
     content = EnglishToBraille.new
     braille = content.translate(text)
-    line_limit = braille.scan(/.{1,82}/).join("!")
+    @line_limit = braille.scan(/.{1,82}/).join("\n")
     file_name = ARGV[1]
     braille_write = File.open(file_name, "w")
-    braille_write.write(line_limit)
+    braille_write.write(@line_limit)
     braille_write.close
 
   end
 
+
+##
+
+  def line_block
+
+
+  end
 
 
 end
