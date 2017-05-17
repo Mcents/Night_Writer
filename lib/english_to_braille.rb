@@ -12,25 +12,11 @@ class EnglishToBraille
 
   def translate(input)
     translate_each_letter = input.split("").map do |letter|
-      letters.hash[letter]
+      letters.alphabet[letter]
     end
-    t = translate_each_letter.transpose
-    counter = 0
-    array = []
-    translate_each_letter.map do |letter|
-      if letter.first.length + counter > 80
-        array << ["\n", "\n", "\n"]
-        array << letter
-        counter = 0
-      else
-        counter += letter.first.length
-        array << letter
-        end
-      end
-      binding.pry
-      b = array.transpose
-    "#{b[0].join}\n" + "#{b[1].join}\n" + "#{b[2].join}"
 
+    t = translate_each_letter.transpose
+    "#{t[0].join}\n" + "#{t[1].join}\n" + "#{t[2].join}"
   end
 
 end

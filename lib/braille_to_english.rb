@@ -12,6 +12,7 @@ class BrailleToEnglish
 
   def split_to_letters(split_braille_1)
     results = split_braille_1[0].length / 2
+    
 
 
 
