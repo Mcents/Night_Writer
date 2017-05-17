@@ -44,10 +44,11 @@ class NightWriter
 
   def get_new_lines(first_line, second_line, third_line)
     string = ""
-    # until first_line.length == 0
-    string << first_line + "\n"
-    string << second_line + "\n"
-    string << third_line + "\n"
+    until first_line.length == 0
+    string << first_line.slice!(0..79) + "\n"
+    string << second_line.slice!(0..79) + "\n"
+    string << third_line.slice!(0..79) + "\n"
+  end
 
   string
 end
