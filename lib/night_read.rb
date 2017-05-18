@@ -8,15 +8,20 @@ class NightReader
     @open_text_braille =  File.open(ARGV[0], "r")
     @text_braille = @open_text_braille.read.chomp
     @braille = Alphabet.new
+  end
+
+
+  def split_to_array(input)
+    break_text = input.split
+    split_character = break_text.map do |characters|
+      characters.split("")
+    end
+    split_character
 
   end
 
   def output_to_english
-    break_text = @text_braille.split
-    split_character = break_text.map do |characters|
-      characters.split("")
-    end
-    top, middle, bottom = split_character
+    top, middle, bottom = split_to_array(@text_braille)
     result = []
 
     until top.empty?
@@ -29,6 +34,7 @@ class NightReader
     end
     code_to_english
   end
+
 
   def code_to_english
     count2 = @final_english.length
